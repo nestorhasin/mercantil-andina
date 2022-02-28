@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ar.com.mercantilandina.challenge.dto.ProductoDto;
 import ar.com.mercantilandina.challenge.entity.Producto;
+import ar.com.mercantilandina.challenge.exception.RecursoNoEncontradoException;
 import ar.com.mercantilandina.challenge.repository.IProductoRespository;
 import ar.com.mercantilandina.challenge.service.interfaces.IProductoService;
 
@@ -37,9 +38,16 @@ public class ProductoServiceImpl implements IProductoService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public ProductoDto readById(Long id) {
+        Producto producto = iProductoRespository.findById(id).orElseThrow(() -> new RecursoNoEncontradoException("Producto", "id", id));
+        return modelMapper.map(producto, ProductoDto.class);
+    }
+
+    @Override
     @Transactional
-    public ProductoDto update(ProductoDto productoDto) {
-        Producto producto = iProductoRespository.findById(productoDto.getId()).get();
+    public ProductoDto update(Long id, ProductoDto productoDto) {
+        Producto producto = iProductoRespository.findById(id).orElseThrow(() -> new RecursoNoEncontradoException("Producto", "id", id));
             producto.setNombre(productoDto.getNombre());
             producto.setDescripcionCorta(productoDto.getDescripcionCorta());
             producto.setDescripcionLarga(productoDto.getDescripcionLarga());
@@ -50,7 +58,7 @@ public class ProductoServiceImpl implements IProductoService {
     @Override
     @Transactional
     public void delete(Long id) {
-        Producto producto = iProductoRespository.findById(id).get();
+        Producto producto = iProductoRespository.findById(id).orElseThrow(() -> new RecursoNoEncontradoException("Producto", "id", id));
         iProductoRespository.delete(producto);
     }
 

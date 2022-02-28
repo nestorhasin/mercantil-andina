@@ -1,4 +1,4 @@
-package ar.com.mercantilandina.challenge.dto;
+package ar.com.mercantilandina.challenge.response;
 
 import org.springframework.stereotype.Component;
 
@@ -13,16 +13,14 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class PedidoDetalleDto {
+public class DetalleResponse {
+    
+    private Long producto;
 
-    private Long id;
-
-    private PedidoCabeceraDto pedidoCabeceraDto;
-
-    private ProductoDto productoDto;
+    private String nombre;
 
     private Integer cantidad;
 
-    private Double precioUnitario;
+    private Double importe;
 
 }
