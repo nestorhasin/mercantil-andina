@@ -136,7 +136,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/productos/1",
+							"raw": "http://localhost:8080/productos/309d25b9-cb60-49a4-b5f7-e0ceb0367c4b",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -144,7 +144,7 @@
 							"port": "8080",
 							"path": [
 								"productos",
-								"1"
+								"309d25b9-cb60-49a4-b5f7-e0ceb0367c4b"
 							]
 						}
 					},
@@ -182,7 +182,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 2,\r\n    \"nombre\": \"espartano\",\r\n    \"descripcionCorta\": \"longaniza con jamon\",\r\n    \"descripcionLarga\": \"masa madre con salsa de tomate, longaniza picante y jamos fileteado\",\r\n    \"precioUnitario\": 1300.50\r\n}",
+							"raw": "{\r\n    \"nombre\": \"espartano\",\r\n    \"descripcionCorta\": \"longaniza con jamon\",\r\n    \"descripcionLarga\": \"masa madre con salsa de tomate, longaniza picante y jamos fileteado\",\r\n    \"precioUnitario\": 1300.50\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -190,14 +190,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/productos",
+							"raw": "http://localhost:8080/productos/309d25b9-cb60-49a4-b5f7-e0ceb0367c4b",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"productos"
+								"productos",
+								"309d25b9-cb60-49a4-b5f7-e0ceb0367c4b"
 							]
 						}
 					},
@@ -234,7 +235,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/productos/1",
+							"raw": "http://localhost:8080/productos/309d25b9-cb60-49a4-b5f7-e0ceb0367c4b",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -242,7 +243,7 @@
 							"port": "8080",
 							"path": [
 								"productos",
-								"1"
+								"309d25b9-cb60-49a4-b5f7-e0ceb0367c4b"
 							]
 						}
 					},
@@ -285,7 +286,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"direccion\": \"Dorton Road 80\",\r\n    \"email\": \"tsayb@opera.com\",\r\n    \"telefono\": \"(0351) 48158101\",\r\n    \"horario\": \"21:00\",\r\n    \"detalle\": [\r\n        {\r\n            \"producto\": 1,\r\n            \"cantidad\": 1\r\n        },\r\n        {\r\n            \"producto\": 2,\r\n            \"cantidad\": 1\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"direccion\": \"Dorton Road 80\",\r\n    \"email\": \"tsayb@opera.com\",\r\n    \"telefono\": \"(0351) 48158101\",\r\n    \"horario\": \"21:00\",\r\n    \"detalle\": [\r\n        \r\n        {\r\n            \"producto\": \"309d25b9-cb60-49a4-b5f7-e0ceb0367c4b\",\r\n            \"cantidad\": 6\r\n        },\r\n        {\r\n            \"producto\": \"309d25b9-cb60-49a4-b5f7-e0ceb0367c4b\",\r\n            \"cantidad\": 1\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -337,7 +338,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos?fecha=2022-02-28",
+							"raw": "http://localhost:8080/pedidos?fecha=2022-03-01",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -349,7 +350,7 @@
 							"query": [
 								{
 									"key": "fecha",
-									"value": "2022-02-28"
+									"value": "2022-03-01"
 								}
 							]
 						}
