@@ -1,14 +1,12 @@
 package ar.com.mercantilandina.challenge.service.interfaces;
 
-import java.time.LocalDate;
 import java.util.List;
 
-import ar.com.mercantilandina.challenge.request.PedidoRequest;
-import ar.com.mercantilandina.challenge.response.PedidoResponse;
+import ar.com.mercantilandina.challenge.dto.PedidoCabeceraDto;
 
 public interface IPedidoService {
 
-    PedidoResponse create(PedidoRequest pedidoRequest);
-    List<PedidoResponse> readByFecha(String fecha);
+    PedidoCabeceraDto create(PedidoCabeceraDto pedidoCabeceraDto);
+    List<PedidoCabeceraDto> readByFecha(String fecha);
 
 }

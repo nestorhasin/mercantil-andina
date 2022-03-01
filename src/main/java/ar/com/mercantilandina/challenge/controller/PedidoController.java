@@ -1,7 +1,5 @@
 package ar.com.mercantilandina.challenge.controller;
 
-import java.time.LocalDate;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.mercantilandina.challenge.dto.PedidoCabeceraDto;
-import ar.com.mercantilandina.challenge.entity.PedidoCabecera;
 import ar.com.mercantilandina.challenge.service.interfaces.IPedidoService;
 
 @RestController

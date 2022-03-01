@@ -1,12 +1,14 @@
 package ar.com.mercantilandina.challenge.service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import ar.com.mercantilandina.challenge.dto.ProductoDto;
 import ar.com.mercantilandina.challenge.entity.Producto;
@@ -15,6 +17,7 @@ import ar.com.mercantilandina.challenge.repository.IProductoRespository;
 import ar.com.mercantilandina.challenge.service.interfaces.IProductoService;
 
 @Service
+@Validated
 public class ProductoServiceImpl implements IProductoService {
 
     @Autowired
@@ -39,14 +42,14 @@ public class ProductoServiceImpl implements IProductoService {
 
     @Override
     @Transactional(readOnly = true)
-    public ProductoDto readById(Long id) {
+    public ProductoDto readById(UUID id) {
         Producto producto = iProductoRespository.findById(id).orElseThrow(() -> new RecursoNoEncontradoException("Producto", "id", id));
         return modelMapper.map(producto, ProductoDto.class);
     }
 
     @Override
     @Transactional
-    public ProductoDto update(Long id, ProductoDto productoDto) {
+    public ProductoDto update(UUID id, ProductoDto productoDto) {
         Producto producto = iProductoRespository.findById(id).orElseThrow(() -> new RecursoNoEncontradoException("Producto", "id", id));
             producto.setNombre(productoDto.getNombre());
             producto.setDescripcionCorta(productoDto.getDescripcionCorta());
@@ -57,7 +60,7 @@ public class ProductoServiceImpl implements IProductoService {
 
     @Override
     @Transactional
-    public void delete(Long id) {
+    public void delete(UUID id) {
         Producto producto = iProductoRespository.findById(id).orElseThrow(() -> new RecursoNoEncontradoException("Producto", "id", id));
         iProductoRespository.delete(producto);
     }
