@@ -25,7 +25,6 @@ import lombok.Setter;
 @Entity
 @Table(name = "pedidos_cabecera")
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
@@ -73,6 +72,10 @@ public class PedidoCabecera implements Serializable {
             this.pedidosDetalle.remove(pedidoDetalle);
             pedidoDetalle.setPedidoCabecera(null);
         }
+    }
+
+    public PedidoCabecera(){
+        setEstado("PENDIENTE");
     }
     
 }

@@ -113,19 +113,16 @@ public class ProductoServiceTest {
 
         Optional<Producto> optionalProductoOne = Optional.of(productoOne);
 
-        UUID id = UUID.randomUUID();
-
-        when(iProductoRepository.findById(id)).thenReturn(optionalProductoOne);
+        when(iProductoRepository.findById(productoOne.getId())).thenReturn(optionalProductoOne);
         when(iProductoRepository.save(any())).thenReturn(productoOne);
         when(modelMapper.map(productoOne, ProductoDto.class)).thenReturn(productoDtoOne);
         when(modelMapper.map(productoDtoOne, Producto.class)).thenReturn(productoOne);
 
         // When
-        ProductoDto productoDtoTwoActualizado = iProductoService.update(id, productoDtoOne);
+        ProductoDto productoDtoTwoActualizado = iProductoService.update(productoOne.getId(), productoDtoOne);
         
         // Then
         assertEquals(productoOne.getNombre(), productoDtoTwoActualizado.getNombre());
-        assertEquals(id, productoDtoTwoActualizado.getId());
         assertEquals(productoOne.getDescripcionCorta(), productoDtoTwoActualizado.getDescripcionCorta());
         assertEquals(productoOne.getDescripcionLarga(), productoDtoTwoActualizado.getDescripcionLarga());
         

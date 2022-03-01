@@ -21,7 +21,6 @@ public class PedidoController {
     private IPedidoService iPedidoService;
 
     @PostMapping
-    //public ResponseEntity<?> create(@RequestBody PedidoRequest pedidoRequest){
         public ResponseEntity<?> create(@RequestBody PedidoCabeceraDto pedidoCabeceraDto){
         return new ResponseEntity<>(iPedidoService.create(pedidoCabeceraDto), HttpStatus.CREATED);
     }

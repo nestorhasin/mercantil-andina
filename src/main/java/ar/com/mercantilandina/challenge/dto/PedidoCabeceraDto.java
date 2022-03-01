@@ -14,7 +14,6 @@ import lombok.Setter;
 
 @Component
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
@@ -42,5 +41,10 @@ public class PedidoCabeceraDto {
     private Boolean descuento;
 
     private String estado;
+
+    
+    public PedidoCabeceraDto(){
+        setEstado("PEDIENTE");
+    }
 
 }
