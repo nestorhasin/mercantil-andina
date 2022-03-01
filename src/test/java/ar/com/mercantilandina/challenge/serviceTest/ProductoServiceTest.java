@@ -3,7 +3,6 @@ package ar.com.mercantilandina.challenge.serviceTest;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
