@@ -1,5 +1,7 @@
 package ar.com.mercantilandina.challenge.dto;
 
+import java.util.UUID;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -21,7 +23,7 @@ import lombok.Setter;
 @Setter
 public class ProductoDto {
     
-    private Long id;
+    private UUID id;
 
     private String nombre;
 

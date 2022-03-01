@@ -2,6 +2,9 @@ package ar.com.mercantilandina.challenge.dto;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
@@ -17,22 +20,27 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PedidoCabeceraDto {
+
+    private LocalDate fecha;
     
-    private Long id;
-    
+    //
     private String direccion;
 
+    //
     private String email;
 
+    //
     private String telefono;
 
+    //
     private LocalTime horario;
 
-    private LocalDate fechaAlta;
+    //
+    private List<PedidoDetalleDto> detalle = new ArrayList<>();
 
-    private Double montoTotal;
+    private Double total;
 
-    private Boolean aplicoDescuento;
+    private Boolean descuento;
 
     private String estado;
 

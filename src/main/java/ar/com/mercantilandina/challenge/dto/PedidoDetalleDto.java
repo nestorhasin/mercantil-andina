@@ -1,5 +1,7 @@
 package ar.com.mercantilandina.challenge.dto;
 
+import java.util.UUID;
+
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
@@ -15,14 +17,14 @@ import lombok.Setter;
 @Setter
 public class PedidoDetalleDto {
 
-    private Long id;
+    //
+    private UUID producto;
 
-    private PedidoCabeceraDto pedidoCabeceraDto;
+    private String nombre;
 
-    private ProductoDto productoDto;
-
+    //
     private Integer cantidad;
 
-    private Double precioUnitario;
+    private Double importe;
 
 }

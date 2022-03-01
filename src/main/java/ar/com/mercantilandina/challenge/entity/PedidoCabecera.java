@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -32,10 +33,13 @@ import lombok.Setter;
 public class PedidoCabecera implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    private Long id;
-    
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Column(name = "id", unique = true, nullable = false)
+    //private Long id;
+    @Column(name = "id", unique = true, nullable = false, columnDefinition = "BINARY(16)")
+    @GeneratedValue
+    private UUID id;
+
     private String direccion;
 
     private String email;
@@ -55,7 +59,7 @@ public class PedidoCabecera implements Serializable {
 
     private String estado;
 
-    @OneToMany(mappedBy = "pedidoCabecera", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "pedidoCabecera", cascade = CascadeType.ALL, orphanRemoval=true)
     @JsonManagedReference
     private List<PedidoDetalle> pedidosDetalle = new ArrayList<>();
 

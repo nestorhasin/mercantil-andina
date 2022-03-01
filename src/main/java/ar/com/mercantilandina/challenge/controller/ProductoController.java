@@ -1,5 +1,7 @@
 package ar.com.mercantilandina.challenge.controller;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,27 +25,27 @@ public class ProductoController {
     private IProductoService iProductoService;
 
     @GetMapping
-    public ResponseEntity<?> readProductos() {
+    public ResponseEntity<?> read() {
         return new ResponseEntity<>(iProductoService.read(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> readByIdProducto(@PathVariable Long id){
+    public ResponseEntity<?> readById(@PathVariable UUID id){
         return new ResponseEntity<>(iProductoService.readById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<?> createProducto(@RequestBody ProductoDto productoDto){
+    public ResponseEntity<?> create(@RequestBody ProductoDto productoDto){
         return new ResponseEntity<>(iProductoService.create(productoDto), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateProducto(@PathVariable Long id, @RequestBody ProductoDto productoDto){
+    public ResponseEntity<?> update(@PathVariable UUID id, @RequestBody ProductoDto productoDto){
         return new ResponseEntity<>(iProductoService.update(id, productoDto), HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteProducto(@PathVariable Long id){
+    public ResponseEntity<?> delete(@PathVariable UUID id){
         iProductoService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

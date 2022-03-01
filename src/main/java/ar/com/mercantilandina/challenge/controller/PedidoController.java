@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import ar.com.mercantilandina.challenge.dto.PedidoCabeceraDto;
 import ar.com.mercantilandina.challenge.entity.PedidoCabecera;
-import ar.com.mercantilandina.challenge.request.PedidoRequest;
 import ar.com.mercantilandina.challenge.service.interfaces.IPedidoService;
 
 @RestController
@@ -24,8 +24,9 @@ public class PedidoController {
     private IPedidoService iPedidoService;
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody PedidoRequest pedidoRequest){
-        return new ResponseEntity<>(iPedidoService.create(pedidoRequest), HttpStatus.CREATED);
+    //public ResponseEntity<?> create(@RequestBody PedidoRequest pedidoRequest){
+        public ResponseEntity<?> create(@RequestBody PedidoCabeceraDto pedidoCabeceraDto){
+        return new ResponseEntity<>(iPedidoService.create(pedidoCabeceraDto), HttpStatus.CREATED);
     }
 
     @GetMapping

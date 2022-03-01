@@ -1,6 +1,7 @@
 package ar.com.mercantilandina.challenge.entity;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -30,9 +31,11 @@ import lombok.Setter;
 public class PedidoDetalle implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    private Long id;
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Column(name = "id", unique = true, nullable = false)
+    @Column(name = "id", unique = true, nullable = false, columnDefinition = "BINARY(16)")
+    @GeneratedValue
+    private UUID id;
 
     // FK pedido_cabecera_id
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
