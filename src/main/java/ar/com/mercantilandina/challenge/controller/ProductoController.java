@@ -2,6 +2,8 @@ package ar.com.mercantilandina.challenge.controller;
 
 import java.util.UUID;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,12 +37,12 @@ public class ProductoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody ProductoDto productoDto){
+    public ResponseEntity<?> create(@Valid @RequestBody ProductoDto productoDto){
         return new ResponseEntity<>(iProductoService.create(productoDto), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable UUID id, @RequestBody ProductoDto productoDto){
+    public ResponseEntity<?> update(@PathVariable UUID id, @Valid @RequestBody ProductoDto productoDto){
         return new ResponseEntity<>(iProductoService.update(id, productoDto), HttpStatus.NO_CONTENT);
     }
 

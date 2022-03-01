@@ -3,19 +3,21 @@ package ar.com.mercantilandina.challenge.exception;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.validation.ConstraintViolationException;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import ar.com.mercantilandina.challenge.response.ExceptionDetailsResponse;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     
     @ExceptionHandler(RecursoNoEncontradoException.class)
@@ -23,11 +25,17 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         ExceptionDetailsResponse exceptionDetailsResponse = new ExceptionDetailsResponse(recursoNoEncontradoException.getMessage());        
         return new ResponseEntity<>(exceptionDetailsResponse, HttpStatus.NOT_FOUND);
     }
-
+    
     @ExceptionHandler(ChallengeException.class)
     public ResponseEntity<?> manageChallengeException(ChallengeException challengeException, WebRequest webRequest){
         ExceptionDetailsResponse exceptionDetailsResponse = new ExceptionDetailsResponse(challengeException.getMessage());
         return new ResponseEntity<>(exceptionDetailsResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<?> manageValidationException(ChallengeException challengeException, WebRequest webRequest){
+        ExceptionDetailsResponse exceptionDetailsResponse = new ExceptionDetailsResponse(challengeException.getMessage());
+        return new ResponseEntity<>(exceptionDetailsResponse, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
     @ExceptionHandler(Exception.class)
