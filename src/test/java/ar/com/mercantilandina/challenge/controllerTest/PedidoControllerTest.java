@@ -23,7 +23,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import ar.com.mercantilandina.challenge.annotation.ControllerTest;
 import ar.com.mercantilandina.challenge.dto.PedidoCabeceraDto;
-import ar.com.mercantilandina.challenge.dto.PedidoDetalleDto;
 import ar.com.mercantilandina.challenge.service.interfaces.IPedidoService;
 import ar.com.mercantilandina.challenge.util.PedidoUtilTest;
 
@@ -69,6 +68,7 @@ public class PedidoControllerTest {
         verify(iPedidoService).readByFecha(fecha);
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void createTest() throws JsonProcessingException, Exception {
         // Given

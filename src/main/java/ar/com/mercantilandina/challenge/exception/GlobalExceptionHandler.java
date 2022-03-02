@@ -1,10 +1,6 @@
 package ar.com.mercantilandina.challenge.exception;
 
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.validation.ConstraintViolationException;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

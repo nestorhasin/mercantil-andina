@@ -1,7 +1,5 @@
 package ar.com.mercantilandina.challenge.exception;
 
-import org.springframework.http.HttpStatus;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
