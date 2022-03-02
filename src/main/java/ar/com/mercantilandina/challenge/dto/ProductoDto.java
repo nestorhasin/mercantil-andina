@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
 
+import ar.com.mercantilandina.challenge.util.ValidationUtil;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,17 +26,20 @@ public class ProductoDto {
     
     private UUID id;
 
-    @NotBlank(message = "el nombre no puede ser null ni estar en blanco, ingreselo nuevamente por favor")
+    @NotNull(message = ValidationUtil.NOT_NULL)
+    @NotEmpty(message = ValidationUtil.NOT_EMPTY)
     private String nombre;
 
-    @NotEmpty(message = "la descripción corta no puede ser null ni estar en blanco, ingresela nuevamente por favor")
-    @Size(min = 1, max = 20, message = "superó la cantidad máxima de caracteres, solo tiene 20 caracteres para ingresar en la descripción corta, ingresela nuevamente por favor")
+    @NotNull(message = ValidationUtil.NOT_NULL)
+    @NotEmpty(message = ValidationUtil.NOT_EMPTY)
+    @Size(max = 20, message = ValidationUtil.SIZE_MAX)
     private String descripcionCorta;
 
-    @NotBlank(message = "la descripción corta no puede ser null ni estar en blanco, ingresela nuevamente por favor")
+    @NotNull(message = ValidationUtil.NOT_NULL)
+    @NotEmpty(message = ValidationUtil.NOT_EMPTY)
     private String descripcionLarga;
 
-    @Min(value = 1, message = "el precio unitario tiene que ser mayor o igual a 1, ingresela nuevamente por favor")
+    @Min(value = 1, message = ValidationUtil.MIN)
     private Double precioUnitario;
 
 }

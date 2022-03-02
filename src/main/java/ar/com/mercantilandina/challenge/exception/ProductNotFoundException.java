@@ -13,18 +13,14 @@ import lombok.NoArgsConstructor;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
-public class RecursoNoEncontradoException extends RuntimeException {
+public class ProductNotFoundException extends RuntimeException {
     
     private String name;
     private String label;
     private UUID value;
 
-    public RecursoNoEncontradoException(String name, String label, UUID value){
+    public ProductNotFoundException(String name, String label, UUID value){
         super(String.format("%s no encontrado con %s %s", name, label, value));
-        System.out.println("ESTO LE MANDO");
-        System.out.println(String.format("%s no encontrado con %s: '%s'", name, label, value));
-        System.out.println("ESTO ME DEVUELVE");
-        System.out.println(super.getMessage());
         setName(name);
         setLabel(label);
         setValue(value);

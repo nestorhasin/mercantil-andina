@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class ExceptionDetailsResponse {
+public class ProductNotFoundResponse {
 
     private String error;
 

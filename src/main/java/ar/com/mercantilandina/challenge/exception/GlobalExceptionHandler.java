@@ -1,5 +1,6 @@
 package ar.com.mercantilandina.challenge.exception;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,45 +16,35 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import ar.com.mercantilandina.challenge.response.ExceptionDetailsResponse;
+import ar.com.mercantilandina.challenge.response.ProductNotFoundResponse;
+import ar.com.mercantilandina.challenge.response.ValidationViolationResponse;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     
-    @ExceptionHandler(RecursoNoEncontradoException.class)
-    public ResponseEntity<?> manageResourceNotFoundException(RecursoNoEncontradoException recursoNoEncontradoException, WebRequest webRequest){
-        ExceptionDetailsResponse exceptionDetailsResponse = new ExceptionDetailsResponse(recursoNoEncontradoException.getMessage());        
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<?> manageResourceNotFoundException(ProductNotFoundException recursoNoEncontradoException, WebRequest webRequest){
+        ProductNotFoundResponse exceptionDetailsResponse = new ProductNotFoundResponse(recursoNoEncontradoException.getMessage());        
         return new ResponseEntity<>(exceptionDetailsResponse, HttpStatus.NOT_FOUND);
-    }
-    
-    @ExceptionHandler(ChallengeException.class)
-    public ResponseEntity<?> manageChallengeException(ChallengeException challengeException, WebRequest webRequest){
-        ExceptionDetailsResponse exceptionDetailsResponse = new ExceptionDetailsResponse(challengeException.getMessage());
-        return new ResponseEntity<>(exceptionDetailsResponse, HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<?> manageValidationException(ChallengeException challengeException, WebRequest webRequest){
-        ExceptionDetailsResponse exceptionDetailsResponse = new ExceptionDetailsResponse(challengeException.getMessage());
-        return new ResponseEntity<>(exceptionDetailsResponse, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> manageException(Exception exception, WebRequest webRequest){
-        ExceptionDetailsResponse exceptionDetailsResponse = new ExceptionDetailsResponse(exception.getMessage());
+        ProductNotFoundResponse exceptionDetailsResponse = new ProductNotFoundResponse(exception.getMessage());
         return new ResponseEntity<>(exceptionDetailsResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
             HttpHeaders headers, HttpStatus status, WebRequest request) {
-            Map<String, String> errors = new HashMap<>();
+            ValidationViolationResponse errores = new ValidationViolationResponse();
             ex.getBindingResult().getAllErrors().forEach(error -> {
                 String field = ((FieldError)error).getField();
                 String message = error.getDefaultMessage();
-                errors.put(field, message);
+                errores.addError(new ValidationViolationException(field + " " + message));
+                errores.getErrores().sort(Comparator.comparing(a -> a.getError()));
             });
-            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(errores, HttpStatus.BAD_REQUEST);
     }
 
 }

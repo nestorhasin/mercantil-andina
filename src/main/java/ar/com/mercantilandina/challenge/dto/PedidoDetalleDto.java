@@ -4,11 +4,12 @@ import java.util.UUID;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
 
+import ar.com.mercantilandina.challenge.util.ValidationUtil;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,12 +23,13 @@ import lombok.Setter;
 @Setter
 public class PedidoDetalleDto {
 
-    @NotBlank(message = "el id del producto no puede ser null ni estar en blanco, ingreselo nuevamente por favor")
+    @NotNull(message = ValidationUtil.NOT_NULL)
+    @NotEmpty(message = ValidationUtil.NOT_EMPTY)
     private UUID producto;
 
     private String nombre;
 
-    @Min(value = 1, message = "la cantidad tiene que ser mayor o igual a 1, ingresela nuevamente por favor")
+    @Min(value = 1, message = ValidationUtil.MIN)
     private Integer cantidad;
 
     private Double importe;

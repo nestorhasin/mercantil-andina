@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -72,6 +73,7 @@ public class PedidoControllerTest {
     public void createTest() throws JsonProcessingException, Exception {
         // Given
         PedidoCabeceraDto pedidoCabeceraDto = PedidoUtilTest.PEDIDO_CABECERA_DTO_ONE;
+            pedidoCabeceraDto.setDetalle(Collections.EMPTY_LIST);
 
         when(iPedidoService.create(any())).thenReturn(pedidoCabeceraDto);
         

@@ -15,7 +15,7 @@ import ar.com.mercantilandina.challenge.dto.PedidoDetalleDto;
 import ar.com.mercantilandina.challenge.entity.PedidoCabecera;
 import ar.com.mercantilandina.challenge.entity.PedidoDetalle;
 import ar.com.mercantilandina.challenge.entity.Producto;
-import ar.com.mercantilandina.challenge.exception.RecursoNoEncontradoException;
+import ar.com.mercantilandina.challenge.exception.ProductNotFoundException;
 import ar.com.mercantilandina.challenge.repository.IPedidoCabeceraRepository;
 import ar.com.mercantilandina.challenge.repository.IPedidoDetalleRepository;
 import ar.com.mercantilandina.challenge.repository.IProductoRespository;
@@ -38,7 +38,7 @@ public class PedidoServiceImpl implements IPedidoService{
         UUID id = pedidoDetalleDto.getProducto();
         Integer cantidad = pedidoDetalleDto.getCantidad();
         
-        Producto producto = iProductoRespository.findById(id).orElseThrow(() -> new RecursoNoEncontradoException("Producto", "id", id));
+        Producto producto = iProductoRespository.findById(id).orElseThrow(() -> new ProductNotFoundException("Producto", "id", id));
         
         PedidoDetalle pedidoDetalle = new PedidoDetalle();
             pedidoDetalle.setCantidad(cantidad);
@@ -103,7 +103,7 @@ public class PedidoServiceImpl implements IPedidoService{
         PedidoCabecera pedidoCabecera = new PedidoCabecera();
         
         for(PedidoDetalleDto detalle: pedidoCabeceraDto.getDetalle()){
-            Producto producto = iProductoRespository.findById(detalle.getProducto()).orElseThrow(() -> new RecursoNoEncontradoException("Producto", "id", detalle.getProducto()));
+            Producto producto = iProductoRespository.findById(detalle.getProducto()).orElseThrow(() -> new ProductNotFoundException("Producto", "id", detalle.getProducto()));
            
             monto = producto.getPrecioUnitario() * detalle.getCantidad();
             total += monto;

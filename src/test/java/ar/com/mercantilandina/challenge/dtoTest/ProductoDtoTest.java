@@ -23,14 +23,14 @@ public class ProductoDtoTest {
     IProductoService iProductoService;
 
     @Test
-    public void whenCreateProductoDtoConNombreEnBlanco_thenSeActivaLaValidacionNotBlanck(){
+    public void whenCreateProductoDtoConNombreEnBlanco_thenSeActivaLaValidacionNotEmpty(){
         assertThrows(ConstraintViolationException.class, () -> {
             iProductoService.create(new ProductoDto(UUID.randomUUID(), "", "descripcionCorta", "descripcionLarga", 1.0));
         });
     }
 
     @Test
-    public void whenCreateProductoDtoConNombreEnNull_thenSeActivaLaValidacionNotBlanck(){
+    public void whenCreateProductoDtoConNombreEnNull_thenSeActivaLaValidacionNotNull(){
         assertThrows(ConstraintViolationException.class, () -> {
             iProductoService.create(new ProductoDto(UUID.randomUUID(), null, "descripcionCorta", "descripcionLarga", 1.0));
         });
@@ -44,7 +44,7 @@ public class ProductoDtoTest {
     }
 
     @Test
-    public void whenCreateProductoDtoConDescripcionCortaEnNull_thenSeActivaLaValidacionNotEmpty(){
+    public void whenCreateProductoDtoConDescripcionCortaEnNull_thenSeActivaLaValidacionNotNull(){
         assertThrows(ConstraintViolationException.class, () -> {
             iProductoService.create(new ProductoDto(UUID.randomUUID(), "nombre", null, "descripcionLarga", 1.0));
         });
@@ -58,14 +58,14 @@ public class ProductoDtoTest {
     }
 
     @Test
-    public void whenCreateProductoDtoConDescripcionLargaEnBlanco_thenSeActivaLaValidacionNotBlank(){
+    public void whenCreateProductoDtoConDescripcionLargaEnBlanco_thenSeActivaLaValidacionNotEmpty(){
         assertThrows(ConstraintViolationException.class, () -> {
             iProductoService.create(new ProductoDto(UUID.randomUUID(), "nombre", "descripcionCorta", "", 1.0));
         });
     }
 
     @Test
-    public void whenCreateProductoDtoConDescripcionLargaEnNull_thenSeActivaLaValidacionNotBlank(){
+    public void whenCreateProductoDtoConDescripcionLargaEnNull_thenSeActivaLaValidacionNotNull(){
         assertThrows(ConstraintViolationException.class, () -> {
             iProductoService.create(new ProductoDto(UUID.randomUUID(), "nombre", "descripcionCorta", null, 1.0));
         });

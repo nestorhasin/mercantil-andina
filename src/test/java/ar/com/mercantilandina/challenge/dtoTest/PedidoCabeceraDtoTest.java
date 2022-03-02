@@ -28,7 +28,7 @@ public class PedidoCabeceraDtoTest {
     IPedidoService iPedidoService;
 
     @Test
-    public void whenCreatePedidoCabeceraDtoConDireccionEnBlanco_thenSeActivaLaValidacionNotBlanck(){
+    public void whenCreatePedidoCabeceraDtoConDireccionEnBlanco_thenSeActivaLaValidacionNotEmpty(){
         assertThrows(ConstraintViolationException.class, () -> {
             PedidoDetalleDto pedidoDetalleDto = PedidoUtilTest.PEDIDO_DETALLE_DTO_ONE;
             iPedidoService.create(new PedidoCabeceraDto(LocalDate.now(), "", "email@emailTest.com", "(1234) 12345678", LocalTime.now(), Arrays.asList(pedidoDetalleDto), null, null, null));
@@ -36,7 +36,7 @@ public class PedidoCabeceraDtoTest {
     }
 
     @Test
-    public void whenCreatePedidoCabeceraDtoConDireccionEnNull_thenSeActivaLaValidacionNotBlanck(){
+    public void whenCreatePedidoCabeceraDtoConDireccionEnNull_thenSeActivaLaValidacionNotNull(){
         assertThrows(ConstraintViolationException.class, () -> {
             PedidoDetalleDto pedidoDetalleDto = PedidoUtilTest.PEDIDO_DETALLE_DTO_ONE;
             iPedidoService.create(new PedidoCabeceraDto(LocalDate.now(), null, "email@emailTest.com", "(1234) 12345678", LocalTime.now(), Arrays.asList(pedidoDetalleDto), null, null, null));
@@ -44,15 +44,7 @@ public class PedidoCabeceraDtoTest {
     }
 
     @Test
-    public void whenCreatePedidoCabeceraDtoConDireccionMenorACincoCaracteres_thenSeActivaLaValidacionSize(){
-        assertThrows(ConstraintViolationException.class, () -> {
-            PedidoDetalleDto pedidoDetalleDto = PedidoUtilTest.PEDIDO_DETALLE_DTO_ONE;
-            iPedidoService.create(new PedidoCabeceraDto(LocalDate.now(), "dir", "email@emailTest.com", "(1234) 12345678", LocalTime.now(), Arrays.asList(pedidoDetalleDto), null, null, null));
-        });
-    }
-
-    @Test
-    public void whenCreatePedidoCabeceraDtoConEmailEnBlanco_thenSeActivaLaValidacionNotBlanck(){
+    public void whenCreatePedidoCabeceraDtoConEmailEnBlanco_thenSeActivaLaValidacionNotEmpty(){
         assertThrows(ConstraintViolationException.class, () -> {
             PedidoDetalleDto pedidoDetalleDto = PedidoUtilTest.PEDIDO_DETALLE_DTO_ONE;
             iPedidoService.create(new PedidoCabeceraDto(LocalDate.now(), "direccion", "", "(1234) 12345678", LocalTime.now(), Arrays.asList(pedidoDetalleDto), null, null, null));
@@ -60,7 +52,7 @@ public class PedidoCabeceraDtoTest {
     }
 
     @Test
-    public void whenCreatePedidoCabeceraDtoConEmailEnNull_thenSeActivaLaValidacionNotBlanck(){
+    public void whenCreatePedidoCabeceraDtoConEmailEnNull_thenSeActivaLaValidacionNotNull(){
         assertThrows(ConstraintViolationException.class, () -> {
             PedidoDetalleDto pedidoDetalleDto = PedidoUtilTest.PEDIDO_DETALLE_DTO_ONE;
             iPedidoService.create(new PedidoCabeceraDto(LocalDate.now(), "direccion", null, "(1234) 12345678", LocalTime.now(), Arrays.asList(pedidoDetalleDto), null, null, null));
@@ -76,9 +68,9 @@ public class PedidoCabeceraDtoTest {
     }
 
     @Test
-    public void whenCreatePedidoCabeceraDtoSinPedidoDetalleDto_thenSeActivaLaValidacionSize(){
+    public void whenCreatePedidoCabeceraDtoConPedidoDetalleDtoNulo_thenSeActivaLaValidacionNotNull(){
         assertThrows(ConstraintViolationException.class, () -> {
-            iPedidoService.create(new PedidoCabeceraDto(LocalDate.now(), "direccion", "email@email.com", "(1234) 12345678", LocalTime.now(), Collections.EMPTY_LIST, null, null, null));
+            iPedidoService.create(new PedidoCabeceraDto(LocalDate.now(), "direccion", "email@email.com", "(1234) 12345678", LocalTime.now(), null, null, null, null));
         });
     }
 
