@@ -265,3 +265,7 @@ Se solicita implementar una API Rest que permita registrar el alta de pedidos de
 ## Postman [DOCUMENTACION]
 
 - Documentación de la api generada en src/main/resources/postman_collection.json
+
+## Spring Boot Actuator [DOCUMENTACION]
+
+- Documentación de la api generada en http://localhost:8080/actuator
