@@ -1,5 +1,29 @@
 # INFORMACION
-Aplicación desarrollada con Spring Boot que provee servicios Rest para la gestión de pedidos y productos.
+La tarea consiste en implementar un set de endpoints de una API Rest mediante Spring Boot para la gestión de pedidos y productos.
+
+## Instrucciones
+Para realizar eficientemente esta tarea le recomendamos seguir los siguientes pasos:
+
+1. Usar una cuenta personal en [Github](https://github.com)
+3. Leer atentamente el enunciado y realizar el ejercicio.
+4. Validar los test con el comando ```mvn test```
+5. Actualizar el repositorio. 
+6. Enviar la URL del repositorio por correo electrónico. 
+ 
+## Requisitos
+- JDK 8 o superior
+- Maven
+
+## Enunciado
+Se solicita implementar una API Rest que permita registrar el alta de pedidos de una pizzería con los siguientes endpoints:
+
+- CRUD de Productos
+- Alta de Pedido
+- Listar pedidos por fecha 
+
+## Regla de negocio
+
+- Si el cliente solicita más de 3 artículos, se le aplica un 30% de descuento.
 
 ## Modelado de entidades
 ### pedidos_cabecera
@@ -28,47 +52,10 @@ Aplicación desarrollada con Spring Boot que provee servicios Rest para la gesti
 - precio_unitario
 
 ## Maven
+
 - Compilar con mvn clean install -DskipTests
 
-## JaCoCo, SureFire y Failsafe [REPORTES]
-- Utilizar el comando mvn clean test para generar el reporte de cobertura (Pruebas Unitarias)
-- Reporte de cobertura generado en target/site/jacoco-ut/index.html
-
-## Swagger [DOCUMENTACION]
-- Documentación de la api generada en http://localhost:8080/open-api/swagger-ui-custom.html y http://localhost:8080/open-api/api-docs
-
-## Postman [DOCUMENTACION]
-- Documentación de la api generada en src/main/resources/postman_collection.json
-
-# CONSIGNA 
-## Introducción 
-La tarea consiste en implementar un set de endpoints de una API Rest mediante Spring Boot.
-
-## Instrucciones
-Para realizar eficientemente esta tarea le recomendamos seguir los siguientes pasos:
-
-1. Usar una cuenta personal en [Github](https://github.com)
-3. Leer atentamente el enunciado y realizar el ejercicio.
-4. Validar los test con el comando ```mvn test```
-5. Actualizar el repositorio. 
-6. Enviar la URL del repositorio por correo electrónico. 
- 
-## Requisitos
-- JDK 8 o superior
-- Maven
-
-## Enunciado
-Se solicita implementar una API Rest que permita registrar el alta de pedidos de una pizzería con los siguientes endpoints:
-
-- CRUD de Productos
-- Alta de Pedido
-- Listar pedidos por fecha 
-
-## Regla de negocio
-
-- Si el cliente solicita más de 3 artículos, se le aplica un 30% de descuento.
-
-## Ejemplos
+## API REST
 
 ### Crear un pedido 
 * Method: POST
@@ -265,3 +252,16 @@ Se solicita implementar una API Rest que permita registrar el alta de pedidos de
 * Method: DELETE
 * Path: /productos/89efb206-2aa6-4e21-8a23-5765e3de1f31
 * Response 204 
+
+## JaCoCo, SureFire y Failsafe [REPORTES]
+
+- Utilizar el comando mvn clean test para generar el reporte de cobertura (Pruebas Unitarias)
+- Reporte de cobertura generado en target/site/jacoco-ut/index.html
+
+## Swagger [DOCUMENTACION]
+
+- Documentación de la api generada en http://localhost:8080/open-api/swagger-ui-custom.html y http://localhost:8080/open-api/api-docs
+
+## Postman [DOCUMENTACION]
+
+- Documentación de la api generada en src/main/resources/postman_collection.json
